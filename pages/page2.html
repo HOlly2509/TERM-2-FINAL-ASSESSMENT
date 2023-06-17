@@ -7,8 +7,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/Users/holly/Desktop/TERM-2-FINAL-ASSESSMENT/css/page2.css"> 
-    <script src="/Users/holly/Desktop/TERM-2-FINAL-ASSESSMENT/js/index.js"></script>
+    <link rel="stylesheet" href="../css/page2.css"> 
+    <script src="../js/page2.js"></script>
 </head>
 
 
@@ -17,8 +17,8 @@
 <nav class="nav-bar">
      <div class="nav-con">
     <ul>
-        <a href="index.html"><li>Home</li></a>
-        <a href="PAGES/page2.html" class="active"><li> Build a sub</li></a>
+        <a href="../index.html"><li>Home</li></a>
+        <a href="page2.html" class="active"><li> Build a sub</li></a>
         <a href="page3.html"><li> Checkout</li></a>
        </ul>
        <form class="navbar-form navbar-left" action="/action_page.php">
@@ -29,7 +29,7 @@
     </div>
 </nav>
 
-<form class="order" id="sandwhichForm" onchange="realTimeCost()">
+<form class="order" id="sandwhichForm"  onchange="realTimeCost()">
 
     <h3>Build a Sub!</h3>
     <input type="text" placeholder="Name Your Sandwhich" id="sandwhichName">
@@ -37,52 +37,38 @@
 
     <div class="breads">
         <h3>Choose your bread</h3>
-        <div class="bread">
-            <input type="radio" id="white" vale="white" checked>
-            <label for="white">
-                White
-            </label>
-        </div>
-
-        <div class="bread">
-            <input type="radio" id="gluten-free" vale="gluten-free" data-cost ="10" checked>
-            <label for="gluten-free">
-                gluten-free
-            </label>
-        </div>
-
-
-        <div class="bread">
-            <input type="radio" id="Brown" vale="Brown" checked>
-            <label for="Brown">
-                White
-            </label>
-        </div>
-
+                
+        <select class="form-control" id="breads">
+          <option>Choose a bread</option>s
+          <option>Brown</option>
+          <option>white</option>
+          <option>gluten-free</option>
+        </select>
     </div>
 
     <div class="sauces">
         <h3>Get Saucy!</h3>
         <div class="sauce-check">
-            <input type="radio" id="BBQ" vale="BBQ" checked>
+            <input type="radio" id="BBQ" value="BBQ" checked name="saucesRadio" data-cost="10">
             <label for="BBQ">
                 BBQ Sauce
             </label>
         </div>
 
         <div class="sauce-check">
-            <input type="radio" id="noSauce" vale="no sauce">
+            <input type="radio" id="noSauce" value="no sauce" name="saucesRadio" data-cost="14">
             <label for="nosauce">
                 No Sauce
             </label>
         </div>
 
         <div class="sauce-check">
-            <input type="radio" id="mustard" vale="Mustard">
+            <input type="radio" id="mustard" value="Mustard" name="saucesRadio" data-cost="19">
             <label for="mustard">
                 Mustard
             </label>
         </div>
+
     </div>
 
     <div class="Inside" id="toppingOptions">
@@ -90,58 +76,59 @@
         <h3>CHOOSE YOUR INSIDES!</h3>
 
         <div class="inside-check" >
-            <input name="Inside" type="checkbox" value="meatballs" id="meatballs">
+            <input name="Inside" type="checkbox" value="meatballs" id="meatballs" data-cost="15">
             <label for="meatballs">
                 Meatballs
             </label>
         </div>
 
         <div class="inside-check">
-            <input name="Inside" type="checkbox" value="salami" id="salami">
+            <input name="Inside" type="checkbox" value="salami" id="salami" data-cost="10">
             <label for="salami">
                 Salami
             </label>
         </div>
 
         <div class="inside-check">
-            <input name="Inside" type="checkbox" value="extracheese" id="extraCheese">
+            <input name="Inside" type="checkbox" value="extracheese" id="extraCheese" data-cost="7">
             <label for="extracheese">
                 Extra Cheese
             </label>
         </div>
 
         <div class="inside-check">
-            <input name="Inside" type="checkbox" value="onions" id="onions">
+            <input name="Inside" type="checkbox" value="onions" id="onions" data-cost="3">
             <label for="onions">
                 Onions
             </label>
         </div>
 
         <div class="inside-check">
-            <input name="Inside" type="checkbox" value="Guacamole" id="guacamole">
+            <input name="Inside" type="checkbox" value="Guacamole" id="guacamole" data-cost="1">
             <label for="guacamole">
                 Guacamole
             </label>
         </div>
 
         <div class="inside-check">
-            <input name="Inside" type="checkbox" value="chicken" id="chicken">
+            <input name="Inside" type="checkbox" value="chicken" id="chicken" data-cost="20">
             <label for="chicken">
                 Chicken
             </label>
         </div>
 
         <div class="inside-check">
-            <input name="Inside" type="checkbox" value="olives" id="olives">
+            <input name="Inside" type="checkbox" value="olives" id="olives" data-cost="14">
             <label for="olives">
                 Olives
             </label>
         </div>
     </div>
 
-    <button class="btn" type="button" id="buildMySub" onclick="buildMySub()" >Build my sub!</button>
+    <button class="btn" type="button" onclick="buildMySub(); displayOrder()" >Build my sub!</button>
 
 </form>
+
 
 <div class="cost">
     <div class="orderCost" id="realTimeCost">R0.00</div>
@@ -152,13 +139,19 @@
   </div>
 
 
-    
-</body>
+    <div class="row" id="ordersHere">
+
+    </div>
+
+    <div class="checkout">
+       <button type="button" onclick="checkout()">Proceed to checkout!</button>
+    </div>
+
 
 <footer>
    <div class="logo"></div>
    <div class="copywrite"></div>
    <div class="social media"></div>
 </footer>
-
+</body>
 </html>
